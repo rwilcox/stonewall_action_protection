@@ -1,8 +1,12 @@
 StonewallActionProtection
 =========================
 
-Introduction goes here.
+This is a simple plugin to make protecting individual controller actions with Stonewall (http://www.github.com/bokmann/stonewall) easier
 
+You could use a slew of before_filters, or you could use the conventions layed
+down by this plugin.
+
+This is meant to be a Rails 3 plugin
 
 Example
 =======
@@ -10,4 +14,4 @@ Example
 Example goes here.
 
 
-Copyright (c) 2011 [name of plugin creator], released under the MIT license
+Copyright (c) 2011 Ryan Wilcox, with original code by Jim Gay, released under the MIT license
