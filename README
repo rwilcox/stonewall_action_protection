@@ -11,7 +11,42 @@ This is meant to be a Rails 3 plugin
 Example
 =======
 
-Example goes here.
+In your model, protect with Stonewall, then declare the following actions:
+
+  Class Thing < ActiveRecord::Base
+    # skip the boring, normal Stonewall setup here. See Stonewall docs on how to do this.
+
+    s.action :create do |object, user_requesting|
+      # fill in your "is this user authorized to create objects" code here. Called for new and create actions.
+    end
+
+    s.action :read do |object, user_requesting|
+      # fill in your "is the user authorized to read objects" code here. Called for index and show actions.
+    end
+
+    s.action :update do |object, user_requesting|
+      # fill in your "is the user authorized to update objects" code here. Called for edit and update actions.
+  end
+
+In your controller:
+
+  class ThingsController < ApplicationController
+    authorizing_resource_method :thing 
+    helper_method :thing   # helper_methods are an awesome way to DRY up your code
+
+  protected
+    def thing
+      @thing ||= Thing.find( params[:id] )
+    end
+  end
+
+You can also create aliases to the CRUD stonewall methods:
+
+  class ThingsController < ApplicationController
+    authorizing_resource_method :thing
+    update_stonewall_map :give_star_rating => :update
+
+  end
 
 
 Copyright (c) 2011 Ryan Wilcox, with original code by Jim Gay, released under the MIT license
