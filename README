@@ -6,7 +6,7 @@ This is a simple plugin to make protecting individual controller actions with St
 You could use a slew of before_filters, or you could use the conventions layed
 down by this plugin.
 
-This is meant to be a Rails 3 plugin
+This is meant to be a Rails 3 plugin (that's where I'm testing), but really, it should work under Rails 2 also
 
 Example
 =======
