@@ -33,7 +33,21 @@ module StandardPermissions
   def set_authorizing_resource
     authorizing_resource_method = self.class.instance_variable_get(:@authorizing_resource_method)
     return true unless authorizing_resource_method
-    @authorizing_resource = self.send(authorizing_resource_method)
+    if params[:id]
+      @authorizing_resource = self.send(authorizing_resource_method)
+    else
+      # If there is no params we must be on an index view. So we need to 
+      # ask a bunch of different objects if they can be seen by this user
+      # For now (while I explore this idea), check the plural of the authorizing_resource_method
+      # If it exists, call it
+      if self.respond_to?(authorizing_resource_method.to_s.pluralize)
+        @authorizing_resource = self.send(authorizing_resource_method.to_s.pluralize).first
+        # TODO: I'm not sure about this design decision. Maybe we should pass a collection
+        # and then collection.may_#{stonewall_action}_all? ?? WD-rpw 03-27-2011
+      else
+        @authorizing_resource = self.send(authorizing_resource_method)
+      end
+    end 
   end
 
   def check_permissions

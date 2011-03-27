@@ -44,7 +44,17 @@ In your controller:
     def thing
       @thing ||= Thing.find( params[:id] )
     end
+
+    def things
+      @things ||= Thing.all
+    end
   end
+
+
+If your controllers have the plural of your authorizing_resource_method defined,
+this will be used for the index (or any other time when no params[:id] is passed). I've
+illustrated this method here, with the "things" method.
+
 
 You can also create aliases to the CRUD stonewall methods:
 
