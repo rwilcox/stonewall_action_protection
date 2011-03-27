@@ -26,8 +26,14 @@ In your model, protect with Stonewall, then declare the following actions:
 
     s.action :update do |object, user_requesting|
       # fill in your "is the user authorized to update objects" code here. Called for edit and update actions.
+    end
+
+    s.action :delete do |object, user_requesting|
+      # fill in your "is this user authorized to delete objects" code here. Called for destroy action.
+    end
   end
 
+    
 In your controller:
 
   class ThingsController < ApplicationController
