@@ -62,7 +62,7 @@ module StandardPermissions
         respond_to do |format|
           format.html{
             flash[:alert] = "Sorry, but you're not authorized to access '#{action_name.humanize} #{controller_name.humanize}.'"
-            redirect_to my_panes_path and return
+            redirect_to access_denied_path and return
           }
           format.any { render :text => '' and return }
         end

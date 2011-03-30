@@ -64,5 +64,9 @@ You can also create aliases to the CRUD stonewall methods:
 
   end
 
+When access is denied it will flash[:alert] a message,
+and redirect the user to access_denied_path
+(so set that up in your routes.rb file)
+
 
 Copyright (c) 2011 Ryan Wilcox, with original code by Jim Gay, released under the MIT license
